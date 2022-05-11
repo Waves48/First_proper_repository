@@ -1,0 +1,134 @@
+public class Arr {
+    /*    Задания ур. 1
+                1. Используя циклы, заполнить массив размером 10 числами от 1 до 10. Распечатать массив.
+                2. Используя циклы, заполнить массив размером 10 числами от 10 до 1. Распечатать массив.
+                3. Используя циклы, заполнить массив размером 10 чётными числами, которые лежат в промежутке от 1 до 20.
+                4. Используя циклы, заполнить массив размером 10 чётными числами, которые лежат в промежутке от 20 до 1.
+                5. Используя циклы, заполнить массив размером 20 числами, которые лежат в промежутке от 1 до 20. Нечётные числа заменить на число 1.
+
+        Задания со звёздочкой.
+    1. Дан массив чисел {83, 17, 0, 0, 31, 0, 2, 7, 93, 0, 61, 0, 22}. Не создавая других массивов, сделать так, чтобы нули, содержащиеся в массиве сместились в конец, числа отличные от 0 остались в начале, сохранив свой порядок.
+    2. Дан массив чисел {12, 83, 17, 31, 2, 7, 93, 76, 61, 22, 45, 98, 53, 16, 13}. Отсортировать числа в массиве так, чтобы по очереди чередовались четные и нечетные числа. Если четных или нечетных окажется больше, то они должны идти по порядку в хвосте массива.
+        Задачу решить двумя способами: а). с созданием дополнительных массивов
+        б). без создания дополнительных массивов    */
+    public static void main(String[] args) {
+        //массив цифрами от 1 до 10, распечатать
+        int[] first = new int[10];
+        for (int i = 0; i < first.length; i++) {
+            first[i] = i + 1;
+        }
+        for (int i = 0; i < first.length; i++) {
+            System.out.println(first[i]);
+        }
+        System.out.println();
+// от 10 до 1
+        int[] second = new int[10];
+        int j = 10;
+        for (int i = 0; i < second.length; i++) {
+            second[i] = j;
+            j--;
+        }
+        for (int i = 0; i < second.length; i++) {
+            System.out.println(second[i]);
+        }
+        System.out.println();
+        // четные числа от 1 до 20 в массив размером 10
+        int[] third = new int[10];
+        for (int i = 0; i < third.length; i++) {
+            third[i] = (i + 1) * 2;
+        }
+        for (int i = 0; i < third.length; i++) {
+            System.out.println(third[i]);
+        }
+        System.out.println();
+        // четные числа от 20 до 1 в обратном порядке в массив размером 10
+        int[] forth = new int[10];
+        int count = 20;
+        for (int i = 0; i < forth.length; i++) {
+            forth[i] = count;
+            count = count - 2;
+        }
+        for (int i = 0; i < forth.length; i++) {
+            System.out.println(forth[i]);
+        }
+        System.out.println();
+        // заполнить массив размером 20 четными числами, нечетные заменить на 1
+        int[] fifth = new int[20];
+        for (int i = 0; i < fifth.length; i++) {
+            fifth[i] = i + 1;
+            if (fifth[i] % 2 != 0) {
+                fifth[i] = 1;
+            }
+        }
+        for (int i = 0; i < fifth.length; i++) {
+            System.out.println(fifth[i]);
+        }
+        System.out.println();
+// дан конкретный массив. Нули должны быть в конце, порядок остального сохранен
+        int[] sixth = {83, 17, 0, 0, 31, 0, 2, 7, 93, 0, 61, 0, 22};
+        int temp;
+        int order = 0;
+        for (int i = 0; i < sixth.length; i++) {
+            if (sixth[i] != 0) {
+                temp = sixth[i];
+                sixth[i] = 0;
+                sixth[order] = temp;
+                order++;
+            }
+        }
+        for (int i = 0; i < sixth.length; i++) {
+            System.out.println(sixth[i]);
+        }
+        System.out.println();
+
+        // Дан массив чисел {12, 83, 17, 31, 2, 7, 93, 76, 61, 22, 45, 98, 53, 16, 13}. Отсортировать числа в массиве так, чтобы по очереди чередовались четные и нечетные числа.
+        // а). с созданием дополнительных массивов
+        int[] seventh = {12, 83, 17, 31, 2, 7, 93, 76, 61, 22, 45, 98, 53, 16, 13};
+        int[] replace = new int[15];
+        int[] special = new int[15];
+        int order1 = 0;
+        int order2 = 0;
+        int order3 = 0;
+        for (int i = 0; i < seventh.length; i++) {
+            if (seventh[i] % 2 == 0) {
+                replace[order1] = seventh[i];
+                order1 = order1 + 2;
+            }
+        }
+        for (int i = 0; i < seventh.length; i++) {
+            if (seventh[i] % 2 != 0) {
+                special[order2] = seventh[i];
+                order2++;
+            }
+        }
+        for (int i = 0; i < replace.length; i++) {
+            if (replace[i] == 0) {
+                replace[i] = special[order3];
+                order3++;
+            }
+
+        }
+        for (int i = 0; i < replace.length; i++) {
+            System.out.println(replace[i]);
+        }
+        System.out.println();
+        // б). без создания дополнительных массивов*/
+        int[] eighths = {12, 83, 17, 31, 2, 7, 93, 76, 61, 22, 45, 98, 53, 16, 13};
+        int tmp;
+        for (int i = 0; i < eighths.length-1; i++) { // Запускается прогон массива
+            if (eighths[i] % 2 != 0 && eighths[i + 1] % 2 != 0) { // Если подряд идут два нечетных числа
+                for (int a = i + 1; a < eighths.length - 1; a++) { // Запускается второй цикл с отправной точкой на втором нечетном числе
+                    if (eighths[a] % 2 == 0) { // Если в массиве есть четное число
+                        tmp = eighths[a]; // оно помещается во временную переменную
+                        eighths[a] = eighths[i + 1]; // ему присваивается значение нечетного числа
+                        eighths[i + 1] = tmp; // нечетному числу присваивается значение четного
+                    }                       // Такова была задумка, но результат плачевный...
+                }                           // Максим, буду очень вам признателен, если подскажете, что было не так
+            }                               // Прошу простить за позднюю домашнюю
+        }
+            for (int i = 0; i < eighths.length; i++) {
+                System.out.println(eighths[i]);
+            }
+        }
+    }
+
